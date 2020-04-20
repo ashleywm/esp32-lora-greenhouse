@@ -58,7 +58,7 @@ bme280_power.on()
 
 i2c = I2C(scl=Pin(i2c_pins['scl']), sda=Pin(i2c_pins['sda']), freq=10000)
 
-bme280 = BME280.BME280(mode=1, i2c=i2c)
+bme280 = BME280.BME280(mode=2, i2c=i2c)
 
 # Set reading from sensor
 bme280_reading = {
