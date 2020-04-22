@@ -1,7 +1,7 @@
 from machine import Pin, SPI, I2C, deepsleep
 
 from lib.sx127x import SX127x
-from lib import BME280
+import lib.BME280 as BME280
 
 """
 SETTINGS 
@@ -61,11 +61,9 @@ i2c = I2C(scl=Pin(i2c_pins['scl']), sda=Pin(i2c_pins['sda']), freq=10000)
 bme280 = BME280.BME280(mode=2, i2c=i2c)
 
 # Set reading from sensor
-bme280_reading = {
-    'temperature': bme280.temperature,
-    'pressure': bme280.pressure,
-    'humidity': bme280.humidity
-}
+bme280_reading = bme280.values
+
+print(bme280_reading)
 
 # Power off the sensor to save power
 bme280_power.off()
