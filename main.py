@@ -7,6 +7,7 @@ from sensors.bme280 import BME280
 from sensors.bh1750 import BH1750
 from sensors.ds18b20 import DS18B20
 from sensors.csms import CSMS
+from sensors.batt import Battery
 
 # SETUP TRANSPORT MEDIUM
 lora = Lora()
@@ -26,6 +27,8 @@ ds18b20.read()
 csms = CSMS(transport=lora)
 csms.read()
 
+batt = Battery(transport=lora)
+batt.read()
 
 # If sleep_minutes is set then deep sleep for X minutes
 if sleep_minutes > 0:

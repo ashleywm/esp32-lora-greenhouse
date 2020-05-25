@@ -29,12 +29,17 @@ i2c_pins = {
 }
 
 onewire_pins = {
-    'ds18b20': 4
+    'ds18b20': 25,
+    'power': 26
 }
 
 csms_pins = {
     'adc': 36,
-    'power': 15
+    'power': 26
+}
+
+battery_pins = {
+    'adc': 39
 }
 
 bme280_settings = {
@@ -43,4 +48,4 @@ bme280_settings = {
 
 
 location_id = 1
-sleep_minutes = 1
+sleep_minutes = 15

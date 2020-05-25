@@ -12,9 +12,11 @@ class DS18B20:
         self.transport = transport
         self.ow = None
         self.sensor = None
+        self.power = Pin(onewire_pins['power'], Pin.OUT)
         self._setup()
 
     def _setup(self):
+        self.power.value(1)
         self.ow = onewire.OneWire(Pin(onewire_pins['ds18b20']))
         self.sensor = ds18x20.DS18X20(self.ow)
 
@@ -33,6 +35,9 @@ class DS18B20:
 
         self.transport.broadcast(payload)
 
+    def sleep(self):
+        self.power.value(0)
+
     def read(self, autosend=True):
 
         roms = self.sensor.scan()
@@ -40,7 +45,7 @@ class DS18B20:
         time.sleep_ms(750)
         raw_reading = self.sensor.read_temp(roms[0])
 
-        print(raw_reading)
+        self.sleep()
 
         if autosend:
             payload = self._format(raw_reading)
