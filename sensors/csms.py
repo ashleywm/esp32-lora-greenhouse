@@ -18,7 +18,7 @@ class CSMS:
         self.power.value(1)
         self.adc = ADC(Pin(csms_pins['adc']))
         self.adc.atten(ADC.ATTN_11DB)
-        self.sensor = lib(adc=self.adc, min_value=3494, max_value=1868)
+        self.sensor = lib(adc=self.adc, min_value=4095, max_value=0)
 
     def _format(self, reading):
         return "{},{},{:.2f}".format(

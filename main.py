@@ -14,21 +14,36 @@ lora = Lora()
 lora.sleep()
 
 # Setup and read from BME280
-bme280 = BME280(transport=lora)
-bme280.read()
+try:
+    bme280 = BME280(transport=lora)
+    bme280.read()
+except:
+    print('Failed to read BME280')
 
 # Setup and read from BH1750
-bh1750 = BH1750(transport=lora)
-bh1750.read()
+try:
+    bh1750 = BH1750(transport=lora)
+    bh1750.read()
+except:
+    print("Failed to read BH1750")
 
-ds18b20 = DS18B20(transport=lora)
-ds18b20.read()
+try:
+    ds18b20 = DS18B20(transport=lora)
+    ds18b20.read()
+except:
+    print("Failed to read DS18B20")
 
-csms = CSMS(transport=lora)
-csms.read()
+try:
+    csms = CSMS(transport=lora)
+    csms.read()
+except:
+    print("Failed to read CSMS")
 
-batt = Battery(transport=lora)
-batt.read()
+try:
+    batt = Battery(transport=lora)
+    batt.read()
+except:
+    print("Failed to read battery")
 
 # If sleep_minutes is set then deep sleep for X minutes
 if sleep_minutes > 0:
